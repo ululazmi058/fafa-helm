@@ -1,101 +1,78 @@
-import Image from "next/image";
+// import Image from "next/image";
+
+// export default function Home() {
+//   return (
+//     <>
+//       <main className="container mx-auto text-center py-16 px-6">
+//         <h1 className="text-4xl font-bold text-blue-700">Selamat Datang di Fafa Helm</h1>
+//         <p className="text-lg text-gray-700 mt-4">
+//           Toko helm berkualitas dengan berbagai pilihan terbaik untuk keselamatan Anda.
+//         </p>
+
+//         {/* Hero Image */}
+//         <div className="mt-6 flex justify-center">
+//           <Image src="/helm.jpg" alt="Helm Terbaik" width={600} height={400} className="rounded-lg shadow-lg"/>
+//         </div>
+
+//         {/* CTA Section */}
+//         <div className="mt-8">
+//           <a href="/product-service" className="bg-blue-600 text-white px-6 py-3 rounded-md text-lg shadow-md hover:bg-blue-700 transition">
+//             Lihat Produk Kami
+//           </a>
+//         </div>
+//       </main>
+//     </>
+//   );
+// }
+
+
+
+
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="font-sans">
+      {/* Hero Section */}
+      <header className="relative w-full h-screen flex items-center justify-center bg-gray-100">
+        <div className="absolute top-0 left-0 w-full h-full bg-cover bg-center" style={{ backgroundImage: "url('/hero-bg.jpg')" }}></div>
+        <div className="relative z-10 text-center">
+          <h1 className="font-nova text-5xl font-bold text-green-800">Wear Helmet, Comfort your Soul</h1>
+          <p className="font-nova mt-2 text-lg text-lime-900">from a small district in Semarang, providing your safety in riding.</p>
+          <Link href="/product-service" className="mt-4 inline-block bg-green-600 text-white py-2 px-6 rounded-lg">CHECK WHAT WE GOT</Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </header>      
+          
+      {/* Services Grid */}
+      <section className="py-16 px-8">
+        <h2 className="text-3xl font-semibold text-center">Our Product & Services</h2>
+        <div className="grid md:grid-cols-3 gap-8 mt-8">
+          {[
+            { name: "Helmet", image: "/helmet.jpg" },
+            { name: "Accessories", image: "/accessories.jpg" },
+            { name: "Spare Part & Repairing", image: "/repairing.jpg" }
+          ].map((service, index) => (
+            <div key={index} className="bg-white shadow-lg p-6 rounded-lg text-center flex flex-col items-center">
+              <Image src={service.image} width={300} height={200} alt={service.name} className="rounded-lg mb-4" />
+              <h3 className="text-xl font-bold">{service.name}</h3>
+              <p className="text-gray-600">Sample text for {service.name} service.</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-16 px-8 bg-gray-100 flex flex-col md:flex-row items-center">
+        <Image src="/profile.jpg" width={300} height={300} alt="Profile" className="rounded-lg" />
+        <div className="md:ml-8 mt-6 md:mt-0">
+          <h2 className="text-3xl font-semibold">Who We Are</h2>
+          <p className="mt-4 text-gray-600">A good brand, required a good history and track record.</p>
+          <Link href="/about" className="mt-4 inline-block bg-green-600 text-white py-2 px-6 rounded-lg">LEARN MORE</Link>
+        </div>
+      </section>    
     </div>
   );
 }

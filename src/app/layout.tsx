@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/atomics/navbar.module";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar />
         {children}
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white text-center py-6 mt-8">
+          <p className="text-sm">&copy; {new Date().getFullYear()} Fafa Helm Corp. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   );
