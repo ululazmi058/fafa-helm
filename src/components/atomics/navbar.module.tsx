@@ -2,20 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Search, User, ShoppingBag, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState<{ [key: string]: boolean }>({
-    products: false,
-    about: false,
-    language: false,
-    currency: false,
-  });
 
   const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleDropdown = (menu: string) =>
-    setDropdownOpen((prev) => ({ ...prev, [menu]: !prev[menu] }));
 
   return (
     <nav className="bg-white text-black shadow-md">
