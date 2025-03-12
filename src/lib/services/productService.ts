@@ -1,9 +1,10 @@
 import Backendless from "../backendless";
 
 export interface IProduct {
-  img: string;
-  title: string;
+  imageUrl: string;
+  name: string;
   category: string;
+  price: number;
 }
 
 export const getProducts = async (

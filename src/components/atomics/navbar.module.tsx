@@ -51,7 +51,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/product-service" className="hover:text-red-500">
-                PRODUCTS & SERVICES
+                OUR THINGS
             </Link>
           </li>
           <li>

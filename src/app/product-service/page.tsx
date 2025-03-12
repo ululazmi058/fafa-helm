@@ -1,85 +1,44 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import ProductList from "@/components/molecules/product.module";
+import { getCategories } from "@/lib/services/productService"; // Fungsi untuk mengambil kategori dari Backendless
 
-const products = [
-  { name: "Full Face Helmet", image: "/products/full-face.jpg" },
-  { name: "Modular Helmet", image: "/products/modular.jpg" },
-  { name: "Open Face Helmet", image: "/products/open-face.jpg" },
-  { name: "Half Helmet", image: "/products/half.jpg" },
-];
+export default function Projects() {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-const services = [
-  { name: "Pasang Kaca Helm", image: "/services/pasang-kaca.jpg" },
-  { name: "Servis Helm", image: "/services/servis-helm.jpg" },
-  { name: "Custom Helm", image: "/services/custom.jpg" },
-  { name: "Pembersihan Helm", image: "/services/cleaning.jpg" },
-];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getCategories();
+      setCategories(data);
+    };
 
-export default function ProductsServices() {
+    fetchCategories();
+  }, []);
+
   return (
-    <>
-      <main className="container mx-auto text-center py-16 px-6">
-        <h1 className="text-4xl font-bold text-blue-700">Produk & Layanan</h1>
-        <p className="text-lg text-gray-700 mt-4">
-          Kami menyediakan berbagai jenis helm berkualitas dan layanan terbaik untuk Anda.
-        </p>
-
-        {/* Helmet Section */}
-        <section className="mt-10">
-          <h2 className="text-2xl font-semibold text-blue-600">Helmets</h2>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={200}
-                  height={150}
-                  className="rounded-lg mx-auto"
-                />
-                <h3 className="text-xl font-medium mt-4">{product.name}</h3>
-              </div>
+    <div className="bg-white">
+      <div className="container flex flex-col pl-10 pr-10 w-full md:min-h-screen pt-25 pb-20 px-20">
+        <div className="select flex justify-items-end">
+          <select
+            className="w-100 border p-2 rounded-md text-black"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="">Semua Kategori</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
             ))}
-          </div>
-        </section>
+          </select>
+        </div>
 
-        {/* Accessories Section */}
-        <section className="mt-16">
-          <h2 className="text-2xl font-semibold text-blue-600">Accessories</h2>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {products.map((product, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={200}
-                  height={150}
-                  className="rounded-lg mx-auto"
-                />
-                <h3 className="text-xl font-medium mt-4">{product.name}</h3>
-              </div>
-            ))}
-          </div>
-        </section>        
-
-        {/* Services Section */}
-        <section className="mt-22">
-          <h2 className="text-2xl font-semibold text-blue-600">Services</h2>
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <div key={index} className="bg-white shadow-md rounded-lg p-6">
-                <Image
-                  src={service.image}
-                  alt={service.name}
-                  width={200}
-                  height={150}
-                  className="rounded-lg mx-auto"
-                />
-                <h3 className="text-xl font-medium mt-4">{service.name}</h3>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-    </>
+        <div className="flex w-full h-full p-4">
+          <ProductList category={selectedCategory} />
+        </div>
+      </div>
+    </div>
   );
 }
+
